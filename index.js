@@ -17,7 +17,11 @@ app.use(function (req, res, next) {
     next();
 });
 
-app.listen(9090, function () { console.log('Servidor Web rodando na porta 9090') });
+app.listen(9090, function () { console.log('The server is working') });
+
+app.get('/', function (req, res) {
+    res.json('Api is working')
+})
 
 app.post('/', function (req, res) {
     let ammount = 1
