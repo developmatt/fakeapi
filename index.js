@@ -1,5 +1,6 @@
 var express = require('express');
 var bodyParser = require('body-parser');
+var faker = require('faker');
 var fs = require('fs');
 
 var app = express();
@@ -18,9 +19,35 @@ app.use(function (req, res, next) {
 
 app.listen(9090, function () { console.log('Servidor Web rodando na porta 9090') });
 
-console.log({data: "Resultado"})
+app.post('/', function (req, res) {
+    let ammount = 1
 
-app.get('/', function (req, res) {
-    var response = { status: 'sucesso', resultado: 'result' };
-    res.json(response);
+    if (typeof req.body.ammount != 'undefined')
+        ammount = req.body.ammount
+
+    let reqKeys = Object.keys(req.body.fields)
+    let jsonData = [];
+
+    for (i = 0; i < ammount; i++) {
+        var obj = {}
+        reqKeys.forEach(function (item, index) {
+            obj[item] = _getFakeData(req.body.fields[item])
+        })
+
+        console.log(obj)
+        jsonData.push(obj);
+     }
+
+    res.json(jsonData)
 });
+
+function _getFakeData(stringFaker) {
+    stringFaker = stringFaker.toString()
+    try {
+        let listFakerSegments = stringFaker.split('.')
+        return faker[listFakerSegments[0]][listFakerSegments[1]]()
+    } catch (e) {
+        console.log(e)
+        return stringFaker
+    }
+}
