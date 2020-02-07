@@ -12,6 +12,10 @@ Json request example:
     	}
     }  
 
+## Api address
+
+The api address is https://developmattfakeapi.herokuapp.com/
+
 ## References
 
 ### `ammount`
