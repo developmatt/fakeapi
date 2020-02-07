@@ -17,7 +17,9 @@ app.use(function (req, res, next) {
     next();
 });
 
-app.listen(80, function () { console.log('The server is working') });
+var port = process.env.PORT || 8080
+
+app.listen(port, function () { console.log('The server is working') });
 
 app.get('/', function (req, res) {
     res.json('Api is working')
