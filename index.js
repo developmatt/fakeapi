@@ -17,7 +17,7 @@ app.use(function (req, res, next) {
     next();
 });
 
-app.listen(9090, function () { console.log('The server is working') });
+app.listen(80, function () { console.log('The server is working') });
 
 app.get('/', function (req, res) {
     res.json('Api is working')
